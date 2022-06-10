@@ -1,0 +1,140 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cinema {
+  idcinema Int      @id @default(autoincrement())
+  name     String   @db.VarChar(45)
+  room     room[]
+  ticket   ticket[]
+}
+
+model drinks {
+  iddrinks Int    @id @default(autoincrement())
+  name     String @db.VarChar(45)
+  iditem   Int
+  amount   Float
+  item     item   @relation(fields: [iditem], references: [iditem], onDelete: NoAction, onUpdate: NoAction, map: "iditem1")
+
+  @@index([iditem], map: "iditem1_idx")
+}
+
+model food {
+  idfood Int    @id @default(autoincrement())
+  name   String @db.VarChar(45)
+  amount Float
+  iditem Int
+  item   item   @relation(fields: [iditem], references: [iditem], onDelete: NoAction, onUpdate: NoAction, map: "iditem")
+
+  @@index([iditem], map: "iditem_idx")
+}
+
+model item {
+  iditem        Int         @id @default(autoincrement())
+  type          String      @db.VarChar(45)
+  idticket_item Int
+  ticket_item   ticket_item @relation(fields: [idticket_item], references: [idticket_item], onDelete: NoAction, onUpdate: NoAction, map: "idticket_item")
+  drinks        drinks[]
+  food          food[]
+
+  @@index([idticket_item], map: "idticket_item_idx")
+}
+
+model movie {
+  idmovie     Int      @id @default(autoincrement())
+  name        String   @db.VarChar(45)
+  description String   @db.VarChar(45)
+  type        String   @db.VarChar(45)
+  ticket      ticket[]
+}
+
+model payment {
+  idpayment   Int       @id @default(autoincrement())
+  idticket    Int
+  amount      Float
+  date        String    @db.VarChar(45)
+  description String    @db.VarChar(45)
+  ticket      ticket    @relation(fields: [idticket], references: [idticket], onDelete: NoAction, onUpdate: NoAction, map: "idticket")
+  receipt     receipt[]
+
+  @@index([idticket], map: "idticket_idx")
+}
+
+model receipt {
+  idreceipt Int     @id @default(autoincrement())
+  idpayment Int
+  payment   payment @relation(fields: [idpayment], references: [idpayment], onDelete: NoAction, onUpdate: NoAction, map: "idpayment")
+
+  @@index([idpayment], map: "idpayment_idx")
+}
+
+model room {
+  idroom   Int    @id @default(autoincrement())
+  idcinema Int
+  name     String @db.VarChar(45)
+  cinema   cinema @relation(fields: [idcinema], references: [idcinema], onDelete: NoAction, onUpdate: NoAction, map: "idcinema")
+  seat     seat[]
+
+  @@index([idcinema], map: "idcinema_idx")
+}
+
+model seat {
+  idseat      Int           @id @default(autoincrement())
+  idroom      Int
+  number      Int
+  room        room          @relation(fields: [idroom], references: [idroom], onDelete: NoAction, onUpdate: NoAction, map: "idroom")
+  ticket_seat ticket_seat[]
+
+  @@index([idroom], map: "idroom_idx")
+}
+
+model ticket {
+  idticket    Int           @id
+  idmovie     Int
+  idcinema    Int
+  iduser      Int
+  status      String        @db.VarChar(45)
+  cinema      cinema        @relation(fields: [idcinema], references: [idcinema], onDelete: NoAction, onUpdate: NoAction, map: "idcinema1")
+  movie       movie         @relation(fields: [idmovie], references: [idmovie], onDelete: NoAction, onUpdate: NoAction, map: "idmovie")
+  user        user          @relation(fields: [iduser], references: [iduser], onDelete: NoAction, onUpdate: NoAction, map: "iduser")
+  payment     payment[]
+  ticket_item ticket_item[]
+  ticket_seat ticket_seat[]
+
+  @@index([idcinema], map: "idcinema_idx")
+  @@index([idmovie], map: "idmovie_idx")
+  @@index([iduser], map: "iduser_idx")
+}
+
+model ticket_item {
+  idticket_item Int    @id @default(autoincrement())
+  idticket      Int
+  ticket        ticket @relation(fields: [idticket], references: [idticket], onDelete: NoAction, onUpdate: NoAction, map: "idticket2")
+  item          item[]
+
+  @@index([idticket], map: "idticket_idx")
+}
+
+model ticket_seat {
+  idticket_seat Int    @id @default(autoincrement())
+  idticket      Int
+  idseat        Int
+  seat          seat   @relation(fields: [idseat], references: [idseat], onDelete: NoAction, onUpdate: NoAction, map: "idseat")
+  ticket        ticket @relation(fields: [idticket], references: [idticket], onDelete: NoAction, onUpdate: NoAction, map: "idticket1")
+
+  @@index([idseat], map: "idseat_idx")
+  @@index([idticket], map: "idticket_idx")
+}
+
+model user {
+  iduser Int      @id @default(autoincrement())
+  name   String   @db.VarChar(45)
+  adress String   @db.VarChar(45)
+  email  String   @db.VarChar(45)
+  ticket ticket[]
+}
