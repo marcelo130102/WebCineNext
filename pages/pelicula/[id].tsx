@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 import { useRouter } from 'next/router'
 import React from "react";
 import styles from "../../styles/MovieDetails.module.css";
 import Menu from "../../components/Menu";
-import Image from 'next/image'
 import { Footer } from '../../components/Footer';
 import getMovie from "../../func/function"
 import { Badge, Button, MantineProvider } from '@mantine/core';
@@ -24,7 +24,7 @@ export default function MovieDetails() {
                     }}
                     >
                 <div className={styles.movieContainer}>
-                    <Image className={styles.col + " " + styles.img} src={imgURL} alt={movie?.title} width={600} height={400}/>
+                    <img className={styles.col + " " + styles.img} src={imgURL} alt={movie?.title} />
                     <div className={styles.col + " " + styles.detail}>
                         <div className={styles.content}>
                             <h1 className={styles.title}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Navbar, Nav, Dropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../styles/Menu.module.css';
+import styles from '../styles/Menu.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ const Menu = ()=>{
   }
     return(
         <div>
-        <Navbar bg="dark" variant="dark" className = "nav">
+        <Navbar bg="dark" variant="dark" className ={styles.nav}>
           <Container>
           <Navbar.Brand onClick={returnHome}>Navbar</Navbar.Brand>
           <Nav className="me-auto">
@@ -23,7 +23,7 @@ const Menu = ()=>{
           <Nav className="me-right user">
               <>
               <Dropdown>
-                <Dropdown.Toggle id="dropdown-button" variant="secondary" className="Usermenu GeneralMenu">
+                <Dropdown.Toggle id="dropdown-button" variant="secondary" className={`${styles.Usermenu} + " "+ ${styles.GeneralMenu}`} >
                   <FontAwesomeIcon icon={faUser}/>
                   {tab}
                   Usuario
