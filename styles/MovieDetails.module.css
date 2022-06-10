@@ -1,0 +1,54 @@
+.movieContainer{
+    display:flex;
+    justify-content: center;
+    background: linear-gradient(180deg, #2A0B45 77.92%, #8D6BDB 100%);
+    color: white;
+    
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+}
+.col{
+    margin-top:50px;
+    margin-bottom: 50px;
+    box-shadow: -15px 10px 4px rgba(0, 0, 0, 0.25);
+}
+
+.img{
+    width: 390px;
+    height:557px;
+    background-color:white;
+}
+.detail{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:700px !important;
+    height:557px;
+    background-color:#2A0B45 !important;
+    font-size: 1rem;
+}
+
+.badge{
+    margin-right:10px;
+}
+
+.description{
+    width:629px !important;
+    background: rgba(141, 107, 219, 0.27);
+    padding:20px;
+}
+
+.subTitle{
+    font-size:2rem;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-around;
+    margin-top:50px;
+    
+}

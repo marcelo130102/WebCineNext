@@ -1,0 +1,34 @@
+.nav{
+    background-color: #2A0B45 !important;
+}
+
+.letters{
+    color: white !important;
+}
+
+.user{
+    padding-right: 100px;
+    
+}
+
+.Usermenu{
+    background-color: #2A0B45 !important;
+    border:none !important;
+}
+.Usermenu:active{
+    border:none !important;
+}
+.GeneralMenu:hover{
+    background-color: #8D6BDB!important;
+}
+
+.Dropmenu{
+    background-color: #2A0B45  !important;
+    border-color:rgb(160, 160, 160) !important;
+}
+.Menuitem{
+    color: white !important;
+}
+.Menuitem:hover{
+    background-color: #8D6BDB!important;
+}
