@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import Image from "next/image";
 import React from "react";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -17,10 +18,10 @@ export default function CarouselOfertas(){
     };
     
     const itemsImg = [
-        <div key ={1} className={styles.carousel}><img src={poster1} alt="Poster 1"/></div>,
-        <div key ={2} className={styles.carousel}><img src={poster2} alt="Poster 2"/></div>,
-        <div key ={3} className={styles.carousel}><img src={poster3} alt="Poster 2"/></div>,
-        <div key ={4} className={styles.carousel}><img src={poster4} alt="Poster 2"/></div>]
+        <div key ={1} className={styles.carousel}><Image src={poster1} alt="Poster 1"/></div>,
+        <div key ={2} className={styles.carousel}><Image src={poster2} alt="Poster 2"/></div>,
+        <div key ={3} className={styles.carousel}><Image src={poster3} alt="Poster 2"/></div>,
+        <div key ={4} className={styles.carousel}><Image src={poster4} alt="Poster 2"/></div>]
 
     return(
         <div>

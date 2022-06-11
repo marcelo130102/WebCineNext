@@ -10,7 +10,6 @@ import { Badge, Button, MantineProvider } from '@mantine/core';
 export default function MovieDetails() {
     const router = useRouter()
     const movieId = parseInt(router.query.id as string, 10)
-    console.log(movieId)
     const movie = getMovie(movieId);
     const imgURL = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
     return (

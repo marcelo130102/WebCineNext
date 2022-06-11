@@ -5,11 +5,11 @@ import { Footer } from '../components/Footer'
 import Menu from '../components/Menu'
 import CarouselOfertas from '../components/CarouselOfertas'
 import GrillaPeliculas from '../components/GrillaPeliculas'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/App.module.css'
 
 const Home: NextPage = () => {
   return (
-    <div className={styles.container}>
+    <div className={styles.App}>
      <Menu/>
      <CarouselOfertas/>
      <GrillaPeliculas/>

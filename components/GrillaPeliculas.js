@@ -3,7 +3,7 @@ import movies from "./movies.json";
 import { MovieCard } from "./MovieCard";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
-import styles from '../styles/GrillaPelículas.module.css';
+import styles from '../styles/GrillaPeliculas.module.css';
 
 const GrillaPeliculas = ()=>{
     const responsive = {
