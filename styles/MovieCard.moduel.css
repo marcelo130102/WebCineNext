@@ -1,0 +1,8 @@
+.movie:hover{
+    opacity:0.8; 
+}
+
+.image{
+    position: relative;
+    background-color: white;
+}

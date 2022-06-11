@@ -1,0 +1,13 @@
+.movieGrid{
+    padding-top:50px;
+}
+
+.title{
+    width: auto;
+    height: 100px;
+    padding-top: 50px;
+    padding-bottom: 70px;
+    display:flex;
+    justify-content: center;
+}
+@import "react-alice-carousel/lib/alice-carousel.css";
