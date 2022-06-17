@@ -13,7 +13,6 @@ export function MovieCard({movie}) {
                     src = {imgURL} 
                     alt = {movie.title} 
                     className={styles.image}
-
                 />
             </Link>
             </div>

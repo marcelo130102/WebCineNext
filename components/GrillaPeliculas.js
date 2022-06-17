@@ -5,6 +5,8 @@ import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import styles from '../styles/GrillaPeliculas.module.css';
 
+
+
 const GrillaPeliculas = ()=>{
     const responsive = {
         0: { items: 1 },
@@ -24,9 +26,15 @@ const GrillaPeliculas = ()=>{
                     responsive={responsive}
 
                     controlsStrategy="alternate"
+
                     items={movies.map((movie)=>{
                         return <div key={movie.id} className="item"><MovieCard  movie = {movie}/></div>
-                    })}/>
+                    })}
+                    
+                    
+                    
+                    
+                />
             </div>
 
         </div>
