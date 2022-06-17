@@ -1,21 +1,29 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import { Footer } from '../components/Footer'
-import Menu from '../components/Menu'
-import CarouselOfertas from '../components/CarouselOfertas'
-import GrillaPeliculas from '../components/GrillaPeliculas'
-import styles from '../styles/App.module.css'
+import type { NextPage } from "next";
+import Head from "next/head";
+import Image from "next/image";
+import { Footer } from "../components/Footer";
+import Menu from "../components/Menu";
+import styles from "../styles/App.module.css";
+import dynamic from "next/dynamic";
+import { SSRProvider } from "@react-aria/ssr";
+const Carousel = dynamic(() => import("../components/CarouselOfertas"), {
+  ssr: false,
+});
 
+const Grilla = dynamic(() => import("../components/GrillaPeliculas"), {
+  ssr: false,
+});
 const Home: NextPage = () => {
   return (
-    <div className={styles.App}>
-     <Menu/>
-     <CarouselOfertas/>
-     <GrillaPeliculas/>
-     <Footer/>
-    </div>
-  )
-}
+    <SSRProvider>
+      <div className={styles.App}>
+        <Menu />
+        <Carousel />
+        <Grilla />
+        <Footer />
+      </div>
+    </SSRProvider>
+  );
+};
 
-export default Home
+export default Home;
