@@ -14,7 +14,7 @@ export default function Formulario(props:any) {
           </Group>
         </Grid.Col>
         <Grid.Col md={8} lg={7}>
-          <Form/>
+          <Form preCompra={props.preCompra}/>
         </Grid.Col>
       </Grid>
     </div>

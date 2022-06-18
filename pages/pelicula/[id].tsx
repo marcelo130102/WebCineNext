@@ -76,11 +76,12 @@ export default function MovieDetails() {
                 </div>
               </div>
               <div className={styles.buttons}>
-                <Button color="grape" radius="lg" size="md" onClick={comprar}>
+                <Button style={{ backgroundColor: "#bf00ff" }} radius="lg" size="md" onClick={comprar}>
                   Comprar
                 </Button>
-                <Button color="grape" radius="lg" size="md">
-                  Pre Compra
+
+                <Button style={{ backgroundColor: "#bf00ff" }} radius="lg" size="md" onClick={()=>router.back()}>
+                  Regresar
                 </Button>
               </div>
             </div>

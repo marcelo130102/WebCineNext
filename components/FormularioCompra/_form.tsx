@@ -1,20 +1,21 @@
 import { At, User } from "tabler-icons-react";
 import { Input, Stack, Text, Title } from "@mantine/core";
 import { useState } from "react";
-import { Calendar } from "@mantine/dates";
+import { DatePicker } from "@mantine/dates";
 import { Indicator } from "@mantine/core";
-
 import { TextInput, Checkbox, Button, Group, Box } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import Calendario from "./_calendar";
+import dayjs from "dayjs";
+import { useRouter } from "next/router";
 
-export default function Form() {
-  const [fecha, setValue] = useState<Date | null | undefined>(null);
+export default function Form(props: any) {
+  const [fecha, setFecha] = useState<Date | null | undefined>(new Date());
+  const router = useRouter()
   const form = useForm({
     initialValues: {
       nombre: "",
       email: "",
-      date: "",
+      date: new Date(),
       termsOfService: false,
     },
 
@@ -48,37 +49,37 @@ export default function Form() {
           {...form.getInputProps("email")}
         />
 
-        <Calendario>
-          <Group position="center">
-            <Calendar
-              {...form.getInputProps("date")}
-              value={fecha}
-              onChange={(e)=>{setValue(e)}}
-              renderDay={(date) => {
-                const day = date.getDate();
-                
-                return (
-                  <Indicator
-                    size={6}
-                    color="red"
-                    offset={8}
-                    disabled={day !== 16}
-                  >
-                    <div>{day}</div>
-                  </Indicator>
-                );
-              }}
-            />
-          </Group>
-        </Calendario>
-        <Checkbox
-          mt="md"
-          label="I agree to sell my privacy"
-          {...form.getInputProps("termsOfService", { type: "checkbox" })}
-        />
-
-        <Group position="right" mt="md">
-          <Button type="submit">Submit</Button>
+        {props.preCompra ? (
+          <DatePicker
+            {...form.getInputProps("date")}
+            value={fecha}
+            onChange={(e) => setFecha(e)}
+            required
+            minDate={dayjs(new Date()).startOf('date').toDate()}
+            maxDate={dayjs(new Date()).startOf('date').add(2, 'days').toDate()}
+            styles={{
+              label: { color: "white", fontSize: "1rem" },
+            }}
+            label="Elige la fecha para ver la película"
+          />
+        ) : (
+          <DatePicker
+            {...form.getInputProps("date")}
+            value={fecha}
+            disabled
+            styles={{
+              label: { color: "white", fontSize: "1rem" },
+            }}
+            label="Elige la fecha para ver la película"
+          />
+        )}
+        <Group position="center" mt="md" spacing="xl" grow>
+          <Button type="submit" style={{ backgroundColor: "#bf00ff" }}>
+            Comprar
+          </Button>
+          <Button type="button" style={{ backgroundColor: "#bf00ff" }} onClick={()=>router.back()}>
+            Cancelar
+          </Button>
         </Group>
       </form>
     </Box>

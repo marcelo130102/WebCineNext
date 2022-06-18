@@ -20,7 +20,7 @@ export default function Compra(props:any) {
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <Menu />
-    <Grilla img = {movie?.poster_path} title={movie?.title} idPelicula={movieId}/>
+    <Grilla img = {movie?.poster_path} title={movie?.title} idPelicula={movieId} preCompra={movie?.preEstreno}/>
     <Footer/>
   </>)
 }
