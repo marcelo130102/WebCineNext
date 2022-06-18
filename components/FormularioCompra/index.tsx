@@ -13,7 +13,7 @@ export default function Formulario(props:any) {
           <Title style={{textAlign:"center"}} order={1}>{props.title}</Title>
           </Group>
         </Grid.Col>
-        <Grid.Col md={10} lg={8}>
+        <Grid.Col md={8} lg={7}>
           <Form/>
         </Grid.Col>
       </Grid>
