@@ -8,11 +8,22 @@ import getMovie from "../../func/function";
 import { Badge, Button, MantineProvider } from "@mantine/core";
 import Head from "next/head";
 
-export default function MovieDetails() {
+interface Movies{
+  movies: {
+    idmovie       : number
+    url_table     : string
+    name          : string   
+    description   : string
+  }[]
+}
+
+export default function MovieDetails({movies}:Movies) {
   const router = useRouter();
   const movieId = parseInt(router.query.id as string, 10);
+  const vmovie : number=+movieId;
   const movie = getMovie(movieId);
   const imgURL = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
+  //const imgURL = movies[vmovie].url_table;
   function comprar() {
     router.push(`/compra/${movieId}`);
   }
