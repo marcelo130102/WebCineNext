@@ -104,3 +104,18 @@ export default function MovieDetails({movies}:Movies) {
     </div>
   );
 }
+export const getServerSideProps: GetServerSideProps = async () => {
+  const movies = await prisma.movie.findMany({
+    select: {
+      
+      idmovie: true
+      
+    }
+  })
+
+  return {
+    props: {
+      movies
+    }
+  }
+}
