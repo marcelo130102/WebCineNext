@@ -8,6 +8,7 @@ import { Footer } from "../../components/Footer";
 import getMovie from "../../func/function";
 import { Badge, Button, MantineProvider } from "@mantine/core";
 import Head from "next/head";
+import { prisma } from '../../lib/prisma';
 
 interface Movies{
   movies: {
