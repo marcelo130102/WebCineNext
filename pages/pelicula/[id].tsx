@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { GetServerSideProps } from 'next'
 import { useRouter } from "next/router";
 import React from "react";
 import styles from "../../styles/MovieDetails.module.css";
