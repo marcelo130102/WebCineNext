@@ -50,6 +50,7 @@ model movie {
   name        String   @db.VarChar(45)
   description String   @db.VarChar(45)
   type        String   @db.VarChar(45)
+  url_table   String   @db.VarChar(45)
   ticket      ticket[]
 }
 
