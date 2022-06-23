@@ -2,8 +2,9 @@ import { Grid, Group, Image, Text, Title } from "@mantine/core";
 import Form from "./_form";
 
 export default function Formulario(props:any) {
-  const imgURL = "https://image.tmdb.org/t/p/w500" +  props.img;
+  const imgURL = props.img;
   const idPelicula = props.idPelicula;
+  
   return (
     <div style={{ background: "#2A0B45", padding:"50px", color:"white" }}>
       <Grid align="center" grow>
