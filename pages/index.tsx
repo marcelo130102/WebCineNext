@@ -5,7 +5,7 @@ import { Footer } from "../components/Footer";
 import Menu from "../components/Menu";
 import styles from "../styles/App.module.css";
 import dynamic from "next/dynamic";
-
+//import PrismaClient from '../../../prisma/schema.prisma';
 const Carousel = dynamic(() => import("../components/CarouselOfertas"), {
   ssr: false,
 });
@@ -23,5 +23,16 @@ const Home: NextPage = () => {
       </div>
   );
 };
+
+
+
+// Fetch posts from authenticated user 
+// (in /pages/index.tsx)
+
+
+
+// Display list of posts (in /pages/index.tsx)
+
+
 
 export default Home;

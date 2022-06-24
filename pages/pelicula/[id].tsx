@@ -1,5 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
-import { GetServerSideProps } from 'next'
+
+
+
+import useSWR from "swr";
+import { Peliculas } from "../../types/peliculas"; 
+
 import { useRouter } from "next/router";
 import React from "react";
 import styles from "../../styles/MovieDetails.module.css";
@@ -10,29 +15,38 @@ import { Badge, Button, MantineProvider } from "@mantine/core";
 import Head from "next/head";
 import { prisma } from '../../lib/prisma';
 
-interface Movies{
-  movies: {
-    idmovie       : number
-    url_table     : string
-    name          : string   
-    description   : string
-  }[]
-}
 
-export default function MovieDetails({movies}:Movies) {
+
+
+const fetcher = async (
+  input: RequestInfo,
+  init: RequestInit,
+  ...args: any[]
+) => {
+  const res = await fetch(input, init);
+  return res.json();
+};
+
+
+
+
+
+export default function MovieDetails() {
   const router = useRouter();
   const movieId = parseInt(router.query.id as string, 10);
-  const vmovie : number=+movieId;
-  const movie = getMovie(movieId);
-  const imgURL = "https://image.tmdb.org/t/p/w500" + movie?.poster_path;
-  //const imgURL = movies[vmovie].url_table;
+  
+  const response = useSWR("/api/pelicula/" + movieId, fetcher);
+  const movie = response.data as Peliculas;
+
+  const imgURL = movie?.url_table;
+
   function comprar() {
     router.push(`/compra/${movieId}`);
   }
   return (
     <div>
       <Head>
-        <title>Detalles - {movie?.title}</title>
+        <title>Detalles - {movie?.name}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Menu />
@@ -58,23 +72,23 @@ export default function MovieDetails({movies}:Movies) {
           <img
             className={styles.col + " " + styles.img}
             src={imgURL}
-            alt={movie?.title}
+            alt={movie?.name}
           />
           <div className={styles.col + " " + styles.detail}>
             <div className={styles.content}>
               <h1 className={styles.title}>
-                <strong>{movie?.title}</strong>
+                <strong>{movie?.name}</strong>
               </h1>
               <div className={styles.description}>
                 <p className={styles.subTitle}>
                   <strong>Descripción:</strong>
                 </p>
-                <p> {movie?.overview}</p>
+                <p> {movie?.description}</p>
                 <p className={styles.subTitle}>
                   <strong>Géneros:</strong>
                 </p>
                 <div>
-                  {movie?.genres.map((genre) => {
+                  {/*movie?.genres.map((genre) => {
                     return (
                       <Badge
                         className={styles.badge}
@@ -85,15 +99,16 @@ export default function MovieDetails({movies}:Movies) {
                         {genre}
                       </Badge>
                     );
-                  })}
+                  })*/}
                 </div>
               </div>
               <div className={styles.buttons}>
-                <Button color="grape" radius="lg" size="md" onClick={comprar}>
+                <Button style={{ backgroundColor: "#bf00ff" }} radius="lg" size="md" onClick={comprar}>
                   Comprar
                 </Button>
-                <Button color="grape" radius="lg" size="md">
-                  Pre Compra
+
+                <Button style={{ backgroundColor: "#bf00ff" }} radius="lg" size="md" onClick={()=>router.back()}>
+                  Regresar
                 </Button>
               </div>
             </div>
@@ -103,19 +118,4 @@ export default function MovieDetails({movies}:Movies) {
       <Footer />
     </div>
   );
-}
-export const getServerSideProps: GetServerSideProps = async () => {
-  const movies = await prisma.movie.findMany({
-    select: {
-      
-      idmovie: true
-      
-    }
-  })
-
-  return {
-    props: {
-      movies
-    }
-  }
 }

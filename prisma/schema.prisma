@@ -47,10 +47,11 @@ model item {
 
 model movie {
   idmovie     Int      @id @default(autoincrement())
-  name        String   @db.VarChar(45)
-  description String   @db.VarChar(45)
-  type        String   @db.VarChar(45)
-  url_table   String   @db.VarChar(45)
+  name        String   @db.VarChar(300)
+  description String   @db.Text
+  type        String   @db.VarChar(200)
+  url_table   String   @db.VarChar(200)
+  preEstreno  Int      @db.TinyInt
   ticket      ticket[]
 }
 
