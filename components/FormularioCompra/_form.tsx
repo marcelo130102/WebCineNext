@@ -105,7 +105,7 @@ export default function Form(props: any) {
                     {...form.getInputProps("combo3")}
                     defaultValue={0}
                     placeholder="0"
-                    value={entradas}
+                    value={comida1}
                     onChange={(e) =>{e!==undefined?setComida1(e):null}}
                     size="md"
                     min={0}
@@ -141,7 +141,7 @@ export default function Form(props: any) {
                     {...form.getInputProps("combo3")}
                     defaultValue={0}
                     placeholder="0"
-                    value={entradas}
+                    value={comida2}
                     onChange={(e) =>{e!==undefined?setComida2(e):null}}
                     size="md"
                     min={0}
@@ -180,7 +180,7 @@ export default function Form(props: any) {
                     {...form.getInputProps("combo3")}
                     defaultValue={0}
                     placeholder="0"
-                    value={entradas}
+                    value={comida3}
                     onChange={(e) =>{e!==undefined?setComida3(e):null}}
                     size="md"
                     min={0}

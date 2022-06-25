@@ -3,8 +3,9 @@ import { Container, Navbar, Nav, Dropdown } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from '../styles/Menu.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { faFilm, faUser } from '@fortawesome/free-solid-svg-icons'
 import { useRouter } from 'next/router';
+import styleCss from "../styles/Menu.module.css"
 const Menu = ()=>{
   const tab = '\u00A0';
   const router = useRouter();
@@ -15,7 +16,7 @@ const Menu = ()=>{
         <div>
         <Navbar bg="dark" variant="dark" className ={styles.nav}>
           <Container>
-          <Navbar.Brand onClick={returnHome}>Navbar</Navbar.Brand>
+          <Navbar.Brand onClick={returnHome} className={styleCss.menu}>Logo</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link className = "letters" onClick={returnHome}>Inicio</Nav.Link>
             <Nav.Link className = "letters">Cartelera</Nav.Link>

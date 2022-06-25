@@ -15,12 +15,16 @@ const Grilla = dynamic(() => import("../components/GrillaPeliculas"), {
 });
 const Home: NextPage = () => {
   return (
-      <div className={styles.App}>
-        <Menu />
-        <Carousel />
-        <Grilla />
-        <Footer />
-      </div>
+    <div className={styles.App}>
+      <Head>
+        <title>Inicio</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Menu />
+      <Carousel />
+      <Grilla />
+      <Footer />
+    </div>
   );
 };
 

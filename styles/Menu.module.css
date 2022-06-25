@@ -32,3 +32,7 @@
 .Menuitem:hover{
     background-color: #8D6BDB!important;
 }
+
+.menu{
+    cursor: pointer !important;
+}
