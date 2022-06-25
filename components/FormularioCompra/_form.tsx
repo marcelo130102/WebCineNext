@@ -1,4 +1,4 @@
-import { At, CircleMinus, CirclePlus, User } from "tabler-icons-react";
+import { At, CircleMinus, CirclePlus, ShoppingCart, User } from "tabler-icons-react";
 import {
   ActionIcon,
   Badge,
@@ -30,7 +30,9 @@ export default function Form(props: any) {
   const [fecha, setFecha] = useState<Date | null | undefined>(new Date());
   const [entradas, setEntradas] = useState(0);
   const [opened, setOpened] = useState(false);
-  const [comida, setComida] = useState(0);
+  const [comida1, setComida1] = useState(0);
+  const [comida2, setComida2] = useState(0);
+  const [comida3, setComida3] = useState(0);
   const router = useRouter();
   const [total, setTotal] = useState(0);
   const theme = useMantineTheme();
@@ -104,7 +106,7 @@ export default function Form(props: any) {
                     defaultValue={0}
                     placeholder="0"
                     value={entradas}
-                    onChange={(e) => setEntradas(e)}
+                    onChange={(e) =>{e!==undefined?setComida1(e):null}}
                     size="md"
                     min={0}
                     style={{ marginTop: "10px" }}
@@ -140,7 +142,7 @@ export default function Form(props: any) {
                     defaultValue={0}
                     placeholder="0"
                     value={entradas}
-                    onChange={(e) => setEntradas(e)}
+                    onChange={(e) =>{e!==undefined?setComida2(e):null}}
                     size="md"
                     min={0}
                     style={{ marginTop: "10px" }}
@@ -179,7 +181,7 @@ export default function Form(props: any) {
                     defaultValue={0}
                     placeholder="0"
                     value={entradas}
-                    onChange={(e) => setEntradas(e)}
+                    onChange={(e) =>{e!==undefined?setComida3(e):null}}
                     size="md"
                     min={0}
                     style={{ marginTop: "10px" }}
@@ -252,7 +254,7 @@ export default function Form(props: any) {
                   placeholder="0"
                   value={entradas}
                   label="Cantidad de entradas"
-                  onChange={(e) => setEntradas(e)}
+                  onChange={(e) =>{e!==undefined?setEntradas(e):null}}
                   size="md"
                   min={0}
                   required
@@ -266,6 +268,7 @@ export default function Form(props: any) {
                   leftIcon={<FontAwesomeIcon icon={faUtensils} />}
                   style={{ backgroundColor: "#bf00ff", marginTop: "20px" }}
                   onClick={() => setOpened(true)}
+                  fullWidth
                 >
                   Comprar comida
                 </Button>
@@ -274,10 +277,10 @@ export default function Form(props: any) {
             <Grid.Col span={6}>
               <Paper
                 p="md"
-                style={{ backgroundColor: "#bf00ff", color: "white" }}
+                style={{ backgroundColor: "#bf00ff", color: "white", maxHeight:"300PX" }}
               >
                 <Title order={3} align="center">
-                  Subtotal: S/. {entradas * 14 + comida}
+                  <ShoppingCart size={30} style={{marginBottom:"3px"}}/> Subtotal: S/. {entradas * 14 + (comida1*19+ comida2*29 + comida3*39)}
                 </Title>
               </Paper>
             </Grid.Col>
