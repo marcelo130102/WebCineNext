@@ -17,6 +17,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useState } from "react";
+import axios from "axios";
 import { DatePicker } from "@mantine/dates";
 import { Indicator } from "@mantine/core";
 import { TextInput, Checkbox, Button, Group, Box } from "@mantine/core";
@@ -30,14 +31,40 @@ export default function Form(props: any) {
   const [fecha, setFecha] = useState<Date | null | undefined>(new Date());
   const [entradas, setEntradas] = useState(0);
   const [opened, setOpened] = useState(false);
-  const [comida, setComida] = useState(0);
+  
+  const [combo1, setCombo1] = useState(0);
+  const [combo2, setCombo2] = useState(0);
+  const [combo3, setCombo3] = useState(0);
+
   const router = useRouter();
   const [total, setTotal] = useState(0);
   const theme = useMantineTheme();
   const secondaryColor =
     theme.colorScheme === "dark" ? theme.colors.dark[1] : theme.colors.gray[7];
+
+
+
+    async function handleSubmit(values: typeof form.values) {
+    try {
+      const { data } = await axios.post("/api/pelicula/"+ props.id, values);
+      console.log(JSON.stringify(data, null, 4));
+      return data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.log("error message: ", error.message);
+        return error.message;
+      } else {
+        console.log("unexpected error: ", error);
+        return "An unexpected error occurred";
+      }
+    }
+  }
+
+
+
   const form = useForm({
     initialValues: {
+      id: props.id,
       nombre: "",
       email: "",
       date: new Date(),
@@ -56,7 +83,7 @@ export default function Form(props: any) {
   return (
     <>
       <Box>
-        <form onSubmit={form.onSubmit((values) => console.log(values))}>
+        <form onSubmit={form.onSubmit((values) =>  handleSubmit(values))}>
           <Drawer
             opened={opened}
             onClose={() => setOpened(false)}
@@ -100,11 +127,11 @@ export default function Form(props: any) {
                   </Text>
 
                   <NumberInput
-                    {...form.getInputProps("combo3")}
+                    {...form.getInputProps("combo1")}
                     defaultValue={0}
                     placeholder="0"
-                    value={entradas}
-                    onChange={(e) => setEntradas(e)}
+                    value={combo1}
+                    onChange={(e) => setCombo1(e)}
                     size="md"
                     min={0}
                     style={{ marginTop: "10px" }}
@@ -136,11 +163,11 @@ export default function Form(props: any) {
                   </Text>
 
                   <NumberInput
-                    {...form.getInputProps("combo3")}
+                    {...form.getInputProps("combo2")}
                     defaultValue={0}
                     placeholder="0"
-                    value={entradas}
-                    onChange={(e) => setEntradas(e)}
+                    value={combo2}
+                    onChange={(e) => setCombo2(e)}
                     size="md"
                     min={0}
                     style={{ marginTop: "10px" }}
@@ -178,8 +205,8 @@ export default function Form(props: any) {
                     {...form.getInputProps("combo3")}
                     defaultValue={0}
                     placeholder="0"
-                    value={entradas}
-                    onChange={(e) => setEntradas(e)}
+                    value={combo3}
+                    onChange={(e) => setCombo3(e)}
                     size="md"
                     min={0}
                     style={{ marginTop: "10px" }}
@@ -277,7 +304,7 @@ export default function Form(props: any) {
                 style={{ backgroundColor: "#bf00ff", color: "white" }}
               >
                 <Title order={3} align="center">
-                  Subtotal: S/. {entradas * 14 + comida}
+                  Subtotal: S/. {entradas * 14 + (combo1*14 + combo2*20 + combo3*25)}
                 </Title>
               </Paper>
             </Grid.Col>

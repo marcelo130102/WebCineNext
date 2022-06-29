@@ -5,3 +5,4 @@ export type Peliculas = {
   type:        string;   
   url_table:   string;   
 }
+

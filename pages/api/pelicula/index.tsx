@@ -1,9 +1,7 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextApiRequest, NextApiResponse } from 'next';
 import PrismaClient from '../../../utils/prisma';
+import { InputUserBodyPost } from '../../../types/form';
 const prisma = PrismaClient;
-
-
-
 
 
 export default async function handler(
@@ -11,8 +9,17 @@ export default async function handler(
     res: NextApiResponse
 ) {
     try {
-        if (req.method === 'GET') {
-            // return all species
+        /*if (req.method === 'POST') {
+            // TODO create a forms
+            let body = req.body;
+            let data = <InputUserBodyPost>(body);
+
+            const result = await prisma.ticket.create({
+                data: data,
+            })
+            return res.status(200).json(result)
+        } else*/ if (req.method === 'GET') {
+            // return all movies
                 const result = await prisma.movie.findMany({
                 });
                 return res.status(200).json(result)
@@ -22,5 +29,4 @@ export default async function handler(
     } catch (err: any) {
         return res.status(404).json({ statusCode: 404, message: err.message })
     }
-
 }

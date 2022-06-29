@@ -1,5 +1,5 @@
 import React from "react"
-import movies from "../movies.json";
+//import movies from "../movies.json";
 import { MovieCard } from "../MovieCard";
 import AliceCarousel from 'react-alice-carousel';
 import 'react-alice-carousel/lib/alice-carousel.css';
@@ -15,8 +15,7 @@ const fetcher = async (
     const res = await fetch(input, init);
     return res.json();
   };
-
-
+  
 const GrillaPeliculas = ()=>{
     const responsive = {
         0: { items: 2 },

@@ -1,10 +1,21 @@
+import {useForm} from "@mantine/form";
 import { Grid, Group, Image, Text, Title } from "@mantine/core";
 import Form from "./_form";
-
+import axios from "axios";
+//import useSWR from "swr";
+import { User } from "../../types/form"; 
+import { showNotification, } from "@mantine/notifications";
 export default function Formulario(props:any) {
   const imgURL = props.img;
   const idPelicula = props.idPelicula;
   
+
+  //const response = useSWR("api/user", fetcher);
+  //const data1 = response.data as User[];
+
+
+  
+
   return (
     <div style={{ background: "#2A0B45", padding:"50px", color:"white" }}>
       <Grid align="center" grow>
@@ -15,7 +26,7 @@ export default function Formulario(props:any) {
           </Group>
         </Grid.Col>
         <Grid.Col md={8} lg={7}>
-          <Form preCompra={props.preCompra}/>
+          <Form preCompra={props.preCompra} id = {}/>
         </Grid.Col>
       </Grid>
     </div>
