@@ -15,10 +15,7 @@ const Menu = ()=>{
         <div>
         <Navbar bg="dark" variant="dark" className ={styles.nav}>
           <Container>
-          <Navbar.Brand onClick={returnHome}>Navbar</Navbar.Brand>
           <Nav className="me-auto">
-            <Nav.Link className = "letters" onClick={returnHome}>Inicio</Nav.Link>
-            <Nav.Link className = "letters">Cartelera</Nav.Link>
           </Nav>
           <Nav className="me-right user">
               <>
